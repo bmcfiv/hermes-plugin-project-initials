@@ -1,0 +1,25 @@
+name: project-initials
+version: 0.1.0
+description: "Prefix automatic session titles with the owning project's initials, e.g. 'BS: Fix invoices' for the project 'Billing Service (bs)'. Optional word cap and project-word trimming."
+author: bmcfiv
+license: MIT
+requires_hermes: ">=0.21.0"
+provides_hooks:
+  - transform_session_title
+config_schema:
+  uppercase:
+    type: bool
+    default: true
+    description: "Write the prefix in capitals (BS:) instead of as the project spelled it (bs:)."
+  max_words:
+    type: int
+    default: 0
+    description: "Cut each topic to this many words (first clause only). 0 keeps the title as generated."
+  drop_project_words:
+    type: bool
+    default: false
+    description: "Drop the project's own name words from the topic, since the prefix already says them."
+  derive_missing:
+    type: bool
+    default: false
+    description: "Derive initials for projects whose name has no trailing (xx). Never renames the project."
